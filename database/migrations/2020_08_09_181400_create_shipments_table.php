@@ -17,7 +17,9 @@ class CreateShipmentsTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('status');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
         });

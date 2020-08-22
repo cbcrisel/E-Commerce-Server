@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Cart;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -19,6 +20,7 @@ class UserController extends Controller
             $token=$tokenResult->token;
             $token->save();
             return response()->json([
+                'id'   =>$user->id,
                 'access_token'=>$tokenResult->accessToken,
                 'token_type'=>'Bearer',
                 'expires_at'=>'Session closed'
@@ -39,6 +41,10 @@ class UserController extends Controller
             $user->password=bcrypt($request->password);
             $user->created_at=Carbon::now();
             $user->save();
+            $cart= new Cart();
+            $cart->status='Vacio';
+            $cart->user_id=$user->id;
+            $cart->save();
             return response()->json('Creado Correctamente',200);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);

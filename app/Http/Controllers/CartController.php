@@ -16,6 +16,9 @@ class CartController extends Controller
         try{
             $user_id=$request->user()->id;
             $cart=Cart::where('user_id',$user_id)->first();
+            if($cart->status=='Vacio'){
+                return response()->json('Su carrito se encuentra vacio',200);
+            }
             $order= Order::where('cart_id', $cart->id)->orderBy('id','desc')->first();
             $productWithAllInfo=DB::table('order_details')
             ->where('order_id',$order->id)

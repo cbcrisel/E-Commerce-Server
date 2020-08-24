@@ -43,9 +43,9 @@ class UserController extends Controller
     public function setNew(Request $request){
         $user=User::where('email',$request->email)->first();
         try{
-            if($user==null){
+            if($user!=null){
                 return response()->json('Correo Ya Registrado',500);
-            }
+            }   
             $user=new User();
             $user->email=$request->email;
             $user->name=$request->name;

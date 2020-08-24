@@ -15,7 +15,16 @@ class UserController extends Controller
     public function login(Request $request){
         try{
         $user=User::where('email',$request->email)->first();
-        if($user!=null){
+        $password= $request->password;
+        
+        if($user==null){
+            return response()->json('BAD USR',500);
+        }
+        $credentials = request(['email', 'password']);
+        
+            if (!Auth::attempt($credentials)) {
+                return response()->json('BAD PWD', 401);
+            }
            $tokenResult = $user->createToken('Personal Access Token');
             $token=$tokenResult->token;
             $token->save();
@@ -25,14 +34,18 @@ class UserController extends Controller
                 'token_type'=>'Bearer',
                 'expires_at'=>'Session closed'
             ],200);
-        }
+        
+        
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
         }
     }
     public function setNew(Request $request){
-        
+        $user=User::where('email',$request->email)->first();
         try{
+            if($user==null){
+                return response()->json('Correo Ya Registrado',500);
+            }
             $user=new User();
             $user->email=$request->email;
             $user->name=$request->name;

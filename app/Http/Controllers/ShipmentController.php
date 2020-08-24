@@ -8,6 +8,7 @@ use App\Shipment;
 use App\Cart;
 use App\Order;
 use DB;
+use Exception;
  
 
 class ShipmentController extends Controller
@@ -49,11 +50,11 @@ class ShipmentController extends Controller
             return response()->json($e->getMessage(),500);
         }
     }
-    public function getShipsOfAUser(Request $request){
+    /* public function getShipsOfAUser(Request $request){
         $user_id=$request->user()->id;     
         $shipments=Shipment::where('user_id',$user_id)->get();   
         return response()->json($shipments->toArray(),200);
-    }
+    } */
     public function getShips(){
         //$shipments=Shipment::all();
         $shipments=DB::table('shipments')
@@ -63,5 +64,24 @@ class ShipmentController extends Controller
             'users.email'
         )->get();
         return response()->json($shipments->toArray(),200);
+    }
+    public function getShipsOfAUser(Request $request){
+        //$shipments=Shipment::all();
+        try{
+        $user_id=$request->user()->id; 
+        $shipments=DB::table('shipments')
+        ->where('shipments.user_id',$user_id)
+        ->join('users','shipments.user_id','users.id')
+        ->join('orders','shipments.order_id','orders.id')
+        ->select(
+            'shipments.*',
+            'users.email',
+            'orders.total_price'
+        ) ->orderByRaw('created_at DESC')
+        ->get();
+        return response()->json($shipments->toArray(),200);
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
     }
 }

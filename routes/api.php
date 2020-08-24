@@ -32,4 +32,5 @@ Route::delete('deleteOrderProduct/{id}','CartController@deleteOrderProduct');
 Route::post('newShip','ShipmentController@newShip');
 Route::get('setStage/{id}','ShipmentController@setInNextStage');
 Route::get('getShips','ShipmentController@getShips');
+Route::get('getShipsOfAUser','ShipmentController@getShipsOfAUser');
 });

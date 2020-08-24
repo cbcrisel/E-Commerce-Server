@@ -94,6 +94,38 @@ class ProductSeeder extends Seeder
                 'image'=>'https://es.yamaha.com/es/files/index_2684x1980_0e5b1990dcb9342f7ad013de93915269.jpg',
                 'description'=>'La nueva RYDEEN (pack con 5 cascos) es exactamente el kit con el que a cualquier baterista principiante le gustaría tocar. Esta batería incluye el set de hardware HW680W de Yamaha y sujeciones de toms.',
                 'category_id'=>3
+            ],
+            [
+                'name'=>'CRYSTAL BEAT',
+                'brand'=>'Pearl',
+                'price'=>900.00,
+                'image'=>'https://pearldrum.com/utility/thumb.php?i=/common/assets/images/drumsets/crystal-beat/CRB525FPC731-Ruby-Red-sm.jpg&w=745&h=429',
+                'description'=>'El juego de batería de acrílico sin costuras original. No es solo otro kit de trampa transparente para el conjunto hipster, el caparazón sin costuras original de Crystal Beat está de vuelta, actualizado y fortalecido para el jugador poderoso de hoy.',
+                'category_id'=>3
+            ],
+            [
+                'name'=>'ROADSHOW',
+                'brand'=>'Pearl',
+                'price'=>1200.00,
+                'image'=>'https://pearldrum.com/utility/thumb.php?i=/common/assets/images/drumsets/roadshow/RS525SCC91.jpg&w=745&h=429',
+                'description'=>'EL RITMO ESTÁ EN USTED ... el equipo adecuado es esencial para liberarlo. Sin juguetes ni objetos usados; un paquete de batería nuevo y completo con todo lo que necesita para comenzar su viaje rítmico hacia el gran momento.',
+                'category_id'=>3
+            ],
+            [
+                'name'=>'AMERICAN ORIGINAL 70s JAZZ BASS',
+                'brand'=>'Fender',
+                'price'=>1700.00,
+                'image'=>'https://d1aeri3ty3izns.cloudfront.net/media/53/536506/1200/preview.jpg',
+                'description'=>' Su tacto suave y su rango medio, templado con un poco de más agudos, lo convirtieron en un héroe en las sesiones de grabación en todo el mundo.',
+                'category_id'=>2
+            ],
+            [
+                'name'=>'60th ANNIVERSARY 1960 LES PAUL STANDARD',
+                'brand'=>'Gibson',
+                'price'=>8000.00,
+                'image'=>'https://static.gibson.com/product-images/Custom/CUSQKW566/V1%20Deep%20Cherry%20Sunburst/LPR60VODCSNH1_front.jpg',
+                'description'=>' Los artesanos de Gibson Custom Shop han recreado con orgullo la experiencia de poseer un original invaluable gracias a la minuciosa atención a los detalles y al incansable estudio de los ejemplos antiguos',
+                'category_id'=>1
             ]
         ];
         foreach($productInformations as $productInformation){
